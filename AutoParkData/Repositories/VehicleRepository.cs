@@ -13,6 +13,9 @@ using Microsoft.Data.SqlClient;
 
 namespace AutoParkData.Repositories
 {
+    /// <summary>
+    /// Repository for vehicles 
+    /// </summary>
     public class VehicleRepository : Repository, IVehicleRepository
     {
         public VehicleRepository(string connectionString) : base(connectionString)
