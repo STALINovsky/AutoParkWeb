@@ -1,0 +1,89 @@
+﻿@model Vehicle
+@{
+    ViewData["Title"] = "Add - Vehicle";
+}
+
+<div class="card">
+    <div class="card-header"><h3>Add vehicle type</h3></div>
+    <div class="card-body">
+        <div class="text-danger" asp-validation-summary="All"></div>
+
+        <form asp-controller="Vehicle" asp-action="Add" method="post">
+
+            <div><span asp-validation-for="ModelName" class="text-danger"></span></div>
+            <div class="form-group row">
+                <label asp-for="ModelName" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="ModelName" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Vehicle type id</label>
+                <div class="col-sm-9">
+                    <select class="form-control" asp-for="VehicleType.Id" asp-items="@ViewBag.TypeList"></select>
+                </div>
+            </div>
+
+            <div><span asp-validation-for="RegistrationNumber" class="text-danger"></span></div>
+            <div class="form-group row">
+                <label asp-for="RegistrationNumber" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="RegistrationNumber" class="form-control">
+                </div>
+            </div>
+
+            <div><span asp-validation-for="Weight"></span></div>
+            <div class="form-group row">
+                <label asp-for="Weight" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="Weight" class="form-control">
+                </div>
+            </div>
+
+            <div><span asp-validation-for="ManufactureYear" class="text-danger"></span></div>
+            <div class="form-group row">
+                <label asp-for="ManufactureYear" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="ManufactureYear" class="form-control">
+                </div>
+            </div>
+
+            <div><span asp-validation-for="VolumeOfTank" class="text-danger"></span></div>
+            <div class="form-group row">
+                <label asp-for="VolumeOfTank" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="VolumeOfTank" class="form-control">
+                </div>
+            </div>
+            
+            <div><span asp-validation-for="Consumption"></span></div>
+            <div class="form-group row">
+                <label asp-for="Consumption" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="Consumption" class="form-control">
+                </div>
+            </div>
+
+            <div><span asp-validation-for="Mileage" class="text-danger"></span></div>
+            <div class="form-group row">
+                <label asp-for="Mileage" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="Mileage" class="form-control">
+                </div>
+            </div>
+
+            <div><span asp-validation-for="Color" class="text-danger"></span></div>
+            <div class="form-group row">
+                <label asp-for="Color" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="Color" class="form-control">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-primary mx-auto">Add</button>
+            </div>
+        </form>
+    </div>
+</div>

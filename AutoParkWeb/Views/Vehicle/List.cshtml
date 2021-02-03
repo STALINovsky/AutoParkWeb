@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Vehicle>
+@{
+    ViewData["Title"] = "Vehicle Types";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><strong>Id</strong></th>
+            <th><a asp-controller="Vehicle" asp-action="List" asp-route-sortingOptions="ByName">Model name</a></th>
+            <th>Registration number</th>
+            <th><a asp-controller="Vehicle" asp-action="List" asp-route-sortingOptions="ByTypeName">Type name</a></th>
+            <th>Tax coefficient</th>
+            <th>Color</th>
+            <th><a asp-controller="Vehicle" asp-action="List" asp-route-sortingOptions="ByMileage">Mileage</a></th>
+            <th>Tank volume</th>
+            <th>Manufacture year</th>
+            <th>Weight</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><a asp-controller="Vehicle" asp-action="Index" asp-route-id="@item.Id">@item.Id</a></td>
+                <td>@item.ModelName</td>
+                <td>@item.RegistrationNumber</td>
+                <td>@item.VehicleType.TypeName</td>
+                <td>@item.VehicleType.TaxCoefficient</td>
+                <td>@item.Color</td>
+                <td>@item.Mileage</td>
+                <td>@item.VolumeOfTank</td>
+                <td>@item.ManufactureYear</td>
+                <td>@item.Weight</td>
+                <td>
+                    <div>
+                        <form class="d-inline" asp-controller="Vehicle" asp-action="Delete" asp-route-id="@item.Id">
+                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        </form>
+                        <a class="btn btn-sm btn-outline-primary" asp-controller="Vehicle" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <caption>To add new item press <a class="btn btn-sm btn-primary" asp-controller="Vehicle" asp-action="Add">Add</a></caption>
+</table>
