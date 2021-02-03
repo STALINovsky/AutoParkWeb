@@ -1,6 +1,4 @@
-using System;
-
-namespace AutoParkWeb.Models
+namespace AutoParkWeb.Models.ViewModels
 {
     public class ErrorViewModel
     {
