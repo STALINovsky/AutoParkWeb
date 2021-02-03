@@ -1,13 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoParkData.Repositories;
+using AutoParkData.Repositories.Interfaces;
 
 namespace AutoParkWeb
 {
@@ -18,11 +15,28 @@ namespace AutoParkWeb
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var dbConnectionString = Configuration.GetConnectionString("AutoParkDB");
+
+            services.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>(
+                provider => new VehicleTypeRepository(dbConnectionString));
+
+            services.AddScoped<IVehicleRepository, VehicleRepository>(
+                provider => new VehicleRepository(dbConnectionString));
+
+            services.AddScoped<ISparePartRepository, SparePartRepository>(provider =>
+                new SparePartRepository(dbConnectionString));
+
+            services.AddScoped<IOrderRepository, OrderRepository>(provider =>
+                new OrderRepository(dbConnectionString));
+
+            services.AddScoped<IOrderItemRepository, OrderItemRepository>(provider =>
+                new OrderItemRepository(dbConnectionString));
+
             services.AddControllersWithViews();
         }
 
