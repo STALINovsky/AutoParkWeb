@@ -12,6 +12,9 @@ using Microsoft.Data.SqlClient;
 
 namespace AutoParkData.Repositories
 {
+    /// <summary>
+    /// Repository for Work with Vehicle types
+    /// </summary>
     public sealed class VehicleTypeRepository : Repository, IVehicleTypeRepository
     {
         public VehicleTypeRepository(string connectionString) : base(connectionString)

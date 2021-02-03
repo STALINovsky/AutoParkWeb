@@ -9,6 +9,9 @@ using Dapper;
 
 namespace AutoParkData.Repositories
 {
+    /// <summary>
+    /// Repository for work with order items  
+    /// </summary>
     public class OrderItemRepository : Repository, IOrderItemRepository
     {
         public OrderItemRepository(string connectionString) : base(connectionString)

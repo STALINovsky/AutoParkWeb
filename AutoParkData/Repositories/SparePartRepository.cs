@@ -12,6 +12,9 @@ using Microsoft.Data.SqlClient;
 
 namespace AutoParkData.Repositories
 {
+    /// <summary>
+    /// Repository for work with Spare Parts
+    /// </summary>
     public class SparePartRepository : Repository, ISparePartRepository
     {
         public SparePartRepository(string connectionString) : base(connectionString)

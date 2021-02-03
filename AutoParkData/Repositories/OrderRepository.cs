@@ -14,6 +14,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace AutoParkData.Repositories
 {
+    /// <summary>
+    /// Repository for work with Orders
+    /// </summary>
     public class OrderRepository : Repository, IOrderRepository
     {
         public OrderRepository(string connectionString) : base(connectionString)
