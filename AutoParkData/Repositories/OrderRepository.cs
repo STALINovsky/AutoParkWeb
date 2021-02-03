@@ -23,8 +23,15 @@ namespace AutoParkData.Repositories
         {
         }
 
+        /// <summary>
+        /// Load Orders From database and map data on Order
+        /// </summary>
+        /// <param name="sql">Sql code to load orders and dependencies, need to select data in correct Order(Order,OrderItem,SparePart, Vehicle)</param>
+        /// <param name="sqlParam">sql arguments</param>
+        /// <returns>Mapped orders</returns>
         private async Task<IEnumerable<Order>> LoadOrders(string sql, object sqlParam = null)
         {
+            //Load data from database 
             var orders = await Connection.QueryAsync<Order, OrderItem, SparePart, Vehicle, (Order order, OrderItem item)>
                 (sql, (order, orderItem, sparePart, vehicle) =>
                 {
@@ -36,8 +43,9 @@ namespace AutoParkData.Repositories
                     }
 
                     return (order, orderItem);
-                },sqlParam);
+                }, sqlParam);
 
+            //group data in orders 
             return orders.GroupBy(tuple => tuple.order.Id).Select(tuples =>
            {
                var groupedOrder = tuples.First().order;
