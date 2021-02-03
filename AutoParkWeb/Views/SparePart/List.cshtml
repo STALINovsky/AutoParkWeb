@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SparePart>
+@{
+    ViewData["Title"] = "Spare parts";
+}
+
+<table class="table">
+
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><strong>@item.Id</strong></td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>
+                <form method="post" class="d-inline">
+                    <button class="btn btn-sm btn-outline-danger"
+                            asp-controller="SparePart" asp-action="Delete" asp-route-id="@item.Id">Delete</button>
+                </form>
+                <a class="btn btn-sm btn-outline-primary"
+                   asp-controller="SparePart" asp-action="Update" asp-route-id="@item.Id">Update</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+    <caption>To add new item press <a class="btn btn-sm btn-primary" asp-controller="SparePart" asp-action="Add">Add</a></caption>
+</table>
