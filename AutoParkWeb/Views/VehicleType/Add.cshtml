@@ -1,0 +1,33 @@
+﻿@model VehicleType
+@{
+    ViewData["Title"] = "Add - Vehicle type";
+}
+
+
+<div class="card">
+    <div class="card-header"><h3>Add vehicle type</h3></div>
+    <div class="card-body">
+        <form asp-controller="VehicleType" asp-action="Add" method="post">
+
+            <div><span asp-validation-for="TaxCoefficient" class="text-danger"></span></div>
+            <div class="form-group row">
+                <label asp-for="TaxCoefficient" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="TaxCoefficient" class="form-control">
+                </div>
+            </div>
+
+            <div><span asp-validation-for="TypeName" class="text-danger"></span></div>
+            <div class="form-group row">
+                <label asp-for="TypeName" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="TypeName" class="form-control">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-primary mx-auto">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
