@@ -1,0 +1,63 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Add Order";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Order №@Model.Id : @Model.Description</h3>
+    </div>
+    <div class="card-body">
+        <div class="card mb-3">
+            <div class="card-header"><h4>Vehicle</h4></div>
+
+            <div class="form-group ml-2">
+                <label class="font-weight-bold">Id:</label>
+                <text>@Model.TargetVehicle.Id</text>
+            </div>
+
+            <div class="form-group ml-2">
+                <label class="font-weight-bold">Model Name:</label>
+                <text>@Model.TargetVehicle.ModelName</text>
+            </div>
+
+            <div class="form-group ml-2">
+                <label class="font-weight-bold">Registration number:</label>
+                <text>@Model.TargetVehicle.RegistrationNumber</text>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Count</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            @foreach (var orderItem in Model.OrderItems)
+            {
+                <tr>
+                    <td>@orderItem.Id</td>
+                    <td>@orderItem.SparePart.Name</td>
+                    <td>@orderItem.SparePart.Description</td>
+                    <td>@orderItem.Count</td>
+                    <td>
+                        <form class="d-inline" asp-controller="OrderItem" asp-action="Delete"
+                              asp-route-orderId="@Model.Id" , asp-route-orderItemId="@orderItem.Id">
+                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                        </form>
+
+                        <a class="btn btn-sm btn-outline-primary" asp-controller="OrderItem" asp-action="Update"
+                           asp-route-itemId="@orderItem.Id" asp-route-orderId="@Model.Id">Update</a>
+                    </td>
+                </tr>
+            }
+            <caption>
+                Add new item: <a class="btn btn-sm btn-primary" asp-controller="OrderItem" asp-action="Add" asp-route-orderId="@Model.Id">Add</a>
+            </caption>
+        </table>
+    </div>
+</div>
