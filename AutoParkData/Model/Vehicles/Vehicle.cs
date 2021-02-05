@@ -11,6 +11,7 @@ namespace AutoParkData.Model.Vehicles
     /// </summary>
     public class Vehicle : Entity
     {
+        public int VehicleTypeId { get; set; }
         public VehicleType VehicleType { get; set; }
         [Required]
         public string ModelName { get; init; }

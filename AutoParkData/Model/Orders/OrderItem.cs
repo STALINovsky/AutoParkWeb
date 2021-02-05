@@ -13,6 +13,9 @@ namespace AutoParkData.Model.Orders
     /// </summary>
     public class OrderItem : Entity
     {
+        public int OrderId { get; set; }
+
+        public int SparePartId { get; set; }
         public SparePart SparePart { get; set; }
         /// <summary>
         /// Count of Spare Part

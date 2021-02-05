@@ -14,6 +14,7 @@ namespace AutoParkData.Model.Orders
     /// </summary>
     public class Order : Entity
     {
+        public int VehicleId { get; set; }
         public Vehicle TargetVehicle { get; set; }
         public List<OrderItem> OrderItems { get; set; }
 
