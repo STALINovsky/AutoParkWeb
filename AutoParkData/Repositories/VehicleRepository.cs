@@ -88,10 +88,11 @@ namespace AutoParkData.Repositories
 
         public async Task Add(Vehicle entity)
         {
+            const string sql = "INSERT INTO Vehicles " +
+                               "(ModelName, VehicleTypeId, Color, ManufactureYear, Mileage, RegistrationNumber, Weight, VolumeOfTank, Consumption) " +
+                               "VALUES (@ModelName, @VehicleTypeId, @Color, @ManufactureYear, @Mileage, @RegistrationNumber, @Weight, @VolumeOfTank, @Consumption) ";
             await Connection.ExecuteAsync(
-                "INSERT INTO Vehicles " +
-                "(ModelName, VehicleTypeId, Color, ManufactureYear, Mileage, RegistrationNumber, Weight, VolumeOfTank, Consumption) " +
-                "VALUES (@ModelName, @VehicleTypeId, @Color, @ManufactureYear, @Mileage, @RegistrationNumber, @Weight, @VolumeOfTank, @Consumption) ",
+                sql,
                 new
                 {
                     entity.ModelName,
