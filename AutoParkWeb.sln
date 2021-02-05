@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoParkWeb", "AutoParkWeb\AutoParkWeb.csproj", "{737065DF-D470-4BA3-BD81-85AC1DEFBCCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoParkData", "AutoParkData\AutoParkData.csproj", "{FD3F908A-878C-4CC9-9D72-B197B15B523F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoParkData", "AutoParkData\AutoParkData.csproj", "{FD3F908A-878C-4CC9-9D72-B197B15B523F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

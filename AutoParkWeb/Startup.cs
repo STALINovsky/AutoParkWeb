@@ -1,3 +1,5 @@
+using System;
+using AutoParkData;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -5,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoParkData.Repositories;
 using AutoParkData.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace AutoParkWeb
 {
@@ -21,6 +24,9 @@ namespace AutoParkWeb
         public void ConfigureServices(IServiceCollection services)
         {
             var dbConnectionString = Configuration.GetConnectionString("AutoParkDB");
+            var dbCreationScript = Configuration["DataBaseCreationScriptPath"];
+
+            DbCreator.EnsureDbCreated(dbConnectionString, dbCreationScript);
 
             services.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>(
                 provider => new VehicleTypeRepository(dbConnectionString));
