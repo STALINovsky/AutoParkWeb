@@ -31,14 +31,14 @@ namespace AutoParkWeb.Controllers
         public async Task<IActionResult> Add(int orderId)
         {
             ViewBag.SparePartList = await GetSelectSparePartsList();
-            return View(new OrderItemViewModel() { OrderId = orderId });
+            return View(new OrderItem() { OrderId = orderId });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(OrderItemViewModel viewModel)
+        public async Task<IActionResult> Add(OrderItem orderItem)
         {
-            await itemRepository.Add(viewModel.OrderItem, viewModel.OrderId);
-            return RedirectToAction("Index", "Order", new { id = viewModel.OrderId });
+            await itemRepository.Add(orderItem);
+            return RedirectToAction("Index", "Order", new { id = orderItem.OrderId });
         }
 
         [HttpPost]
@@ -54,14 +54,14 @@ namespace AutoParkWeb.Controllers
             ViewBag.SparePartList = await GetSelectSparePartsList();
 
             var item = await itemRepository.Get(itemId);
-            return View(new OrderItemViewModel() { OrderId = orderId, OrderItem = item });
+            return View(item);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(OrderItemViewModel viewModel)
+        public async Task<IActionResult> Update(OrderItem orderItem)
         {
-            await itemRepository.Update(viewModel.OrderItem);
-            return RedirectToAction("Index", "Order", new { id = viewModel.OrderId });
+            await itemRepository.Update(orderItem);
+            return RedirectToAction("Index", "Order", new { id = orderItem.OrderId });
         }
 
     }

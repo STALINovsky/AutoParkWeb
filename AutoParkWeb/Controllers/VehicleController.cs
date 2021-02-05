@@ -51,7 +51,7 @@ namespace AutoParkWeb.Controllers
         public async Task<IActionResult> Add()
         {
             ViewBag.TypeList = await GetSelectVehicleTypes();
-            return View(new Vehicle() { VehicleType = new VehicleType() });
+            return View();
         }
 
         [HttpPost]
