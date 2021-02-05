@@ -1,4 +1,4 @@
-﻿@model OrderItemViewModel
+﻿@model OrderItem
 
 @{
     ViewData["Title"] = "Update - Order item";
@@ -10,20 +10,20 @@
     <div class="card-body">
         <form asp-controller="OrderItem" asp-action="Update">
             <input asp-for="OrderId" hidden>
-            <input hidden asp-for="OrderItem.Id"/>
+            <input hidden asp-for="Id"/>
 
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Spare part</label>
                 <div class="col-sm-9">
-                    <select asp-for="OrderItem.SparePart.Id" class="form-control" asp-items="ViewBag.SparePartList"></select>
+                    <select asp-for="SparePartId" class="form-control" asp-items="ViewBag.SparePartList"></select>
                 </div>
             </div>
 
-            <div><span asp-validation-for="OrderItem.Count" class="text-danger"></span></div>
+            <div><span asp-validation-for="Count" class="text-danger"></span></div>
             <div class="form-group row">
-                <label asp-for="OrderItem.Count" class="col-sm-3 col-form-label"></label>
+                <label asp-for="Count" class="col-sm-3 col-form-label"></label>
                 <div class="col-sm-9">
-                    <input asp-for="OrderItem.Count" class="form-control">
+                    <input asp-for="Count" class="form-control">
                 </div>
             </div>
 

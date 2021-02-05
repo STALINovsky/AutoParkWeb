@@ -1,4 +1,4 @@
-﻿@model OrderItemViewModel
+﻿@model OrderItem
 
 @{
     ViewData["Title"] = "Add spare part";
@@ -14,15 +14,15 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Spare part</label>
                 <div class="col-sm-9">
-                    <select class="form-control" asp-for="OrderItem.SparePart.Id" asp-items="@ViewBag.SparePartList"></select>
+                    <select class="form-control" asp-for="SparePartId" asp-items="@ViewBag.SparePartList"></select>
                 </div>
             </div>
 
-            <div><span asp-validation-for="OrderItem.Count" class="text-danger"></span></div>
+            <div><span asp-validation-for="Count" class="text-danger"></span></div>
             <div class="form-group row">
-                <label asp-for="OrderItem.Count" class="col-sm-3 col-form-label"></label>
+                <label asp-for="Count" class="col-sm-3 col-form-label"></label>
                 <div class="col-sm-9">
-                    <input class="form-control" asp-for="OrderItem.Count" />
+                    <input class="form-control" asp-for="Count" />
                 </div>
             </div>
 
