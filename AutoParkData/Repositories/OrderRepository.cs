@@ -33,7 +33,7 @@ namespace AutoParkData.Repositories
         {
             //Load data from database 
             var orders = await Connection.QueryAsync<Order, OrderItem, SparePart, Vehicle, (Order order, OrderItem item)>
-                (sql, (order, orderItem, sparePart, vehicle) =>
+            (sql, (order, orderItem, sparePart, vehicle) =>
                 {
                     order.TargetVehicle = vehicle;
 
@@ -82,12 +82,7 @@ namespace AutoParkData.Repositories
                 "VehicleId = @VehicleId, " +
                 "Description = @Description " +
                 "WHERE Id = @Id",
-                new
-                {
-                    entity.Id,
-                    VehicleId = entity.TargetVehicle.Id,
-                    entity.Description
-                });
+                entity);
         }
 
         public async Task Delete(int id)
@@ -97,14 +92,7 @@ namespace AutoParkData.Repositories
 
         public async Task Add(Order entity)
         {
-            await Connection.ExecuteAsync(
-                "INSERT INTO Orders(VehicleId, Description) VALUES(@VehicleId, @Description)",
-                new
-                {
-                    VehicleId = entity.TargetVehicle.Id,
-                    entity.Description
-                }
-            );
+            await Connection.ExecuteAsync("INSERT INTO Orders(VehicleId, Description) VALUES(@VehicleId, @Description)", entity);
         }
     }
 }

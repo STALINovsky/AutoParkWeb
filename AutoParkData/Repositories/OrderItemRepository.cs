@@ -50,7 +50,7 @@ namespace AutoParkData.Repositories
                                "Count = @Count " +
                                "Where Id = @Id";
 
-            return Connection.ExecuteAsync(sql, new { SparePartId = entity.SparePart.Id, entity.Count, entity.Id });
+            return Connection.ExecuteAsync(sql, entity);
         }
 
         public Task Delete(int id)
@@ -59,10 +59,10 @@ namespace AutoParkData.Repositories
             return Connection.ExecuteAsync(sql, new { id });
         }
 
-        public Task Add(OrderItem entity, int orderId)
+        public Task Add(OrderItem entity)
         {
-            const string sql = "INSERT INTO OrderItems (OrderId, SparePartId, Count) VALUES(@orderId, @sparePartId, @Count)";
-            return Connection.ExecuteAsync(sql, new { orderId, sparePartId = entity.SparePart.Id, entity.Count });
+            const string sql = "INSERT INTO OrderItems (OrderId, SparePartId, Count) VALUES(@OrderId, @SparePartId, @Count)";
+            return Connection.ExecuteAsync(sql, entity);
         }
     }
 }

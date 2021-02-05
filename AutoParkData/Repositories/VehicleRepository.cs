@@ -24,11 +24,12 @@ namespace AutoParkData.Repositories
 
         public async Task<IEnumerable<Vehicle>> GetVehicles()
         {
-            return await Connection.QueryAsync<Vehicle, VehicleType, Vehicle>(
-                "SELECT * " +
-                "FROM Vehicles v " +
-                "LEFT JOIN VehicleTypes vt " +
-                "ON v.VehicleTypeId = vt.Id ", ((vehicle, vehicleType) =>
+            const string sql = "SELECT * " +
+                               "FROM Vehicles v " +
+                               "LEFT JOIN VehicleTypes vt " +
+                               "ON v.VehicleTypeId = vt.Id ";
+
+            return await Connection.QueryAsync<Vehicle, VehicleType, Vehicle>(sql, ((vehicle, vehicleType) =>
                 {
                     vehicle.VehicleType = vehicleType;
                     return vehicle;
@@ -37,13 +38,13 @@ namespace AutoParkData.Repositories
 
         public async Task<Vehicle> Get(int id)
         {
-            var query = await Connection.QueryAsync<Vehicle, VehicleType, Vehicle>(
-                @"SELECT * 
-                    FROM Vehicles v 
-                    JOIN VehicleTypes vt 
-                    ON v.VehicleTypeId = vt.Id 
-                    WHERE v.Id = @id",
-                (vehicle, type) =>
+            const string sql = "SELECT * " +
+                    "FROM Vehicles v " +
+                    "JOIN VehicleTypes vt " +
+                    "ON v.VehicleTypeId = vt.Id " +
+                    "WHERE v.Id = @id ";
+
+            var query = await Connection.QueryAsync<Vehicle, VehicleType, Vehicle>(sql, (vehicle, type) =>
                 {
                     vehicle.VehicleType = type;
                     return vehicle;
@@ -55,30 +56,18 @@ namespace AutoParkData.Repositories
 
         public async Task Update(Vehicle entity)
         {
-            await Connection.ExecuteAsync(
-                "UPDATE Vehicles SET " +
-                "ModelName = @ModelName, " +
-                "VehicleTypeId = @VehicleTypeId, " +
-                "Color = @Color, " +
-                "ManufactureYear = @ManufactureYear, " +
-                "Mileage = @Mileage, " +
-                "RegistrationNumber = @RegistrationNumber, " +
-                "Weight = @Weight, " +
-                "VolumeOfTank = @VolumeOfTank " +
-                "WHERE Id = @Id",
-                new
-                {
-                    entity.Id,
-                    entity.ModelName,
-                    VehicleTypeId = entity.VehicleType.Id,
-                    entity.Color,
-                    entity.ManufactureYear,
-                    entity.Mileage,
-                    entity.RegistrationNumber,
-                    entity.Weight,
-                    entity.VolumeOfTank
-                }
-            );
+            const string sql = "UPDATE Vehicles SET " +
+                               "ModelName = @ModelName, " +
+                               "VehicleTypeId = @VehicleTypeId, " +
+                               "Color = @Color, " +
+                               "ManufactureYear = @ManufactureYear, " +
+                               "Mileage = @Mileage, " +
+                               "RegistrationNumber = @RegistrationNumber, " +
+                               "Weight = @Weight, " +
+                               "VolumeOfTank = @VolumeOfTank " +
+                               "WHERE Id = @Id";
+
+            await Connection.ExecuteAsync(sql, entity);
         }
 
         public async Task Delete(int id)
@@ -91,21 +80,7 @@ namespace AutoParkData.Repositories
             const string sql = "INSERT INTO Vehicles " +
                                "(ModelName, VehicleTypeId, Color, ManufactureYear, Mileage, RegistrationNumber, Weight, VolumeOfTank, Consumption) " +
                                "VALUES (@ModelName, @VehicleTypeId, @Color, @ManufactureYear, @Mileage, @RegistrationNumber, @Weight, @VolumeOfTank, @Consumption) ";
-            await Connection.ExecuteAsync(
-                sql,
-                new
-                {
-                    entity.ModelName,
-                    VehicleTypeId = entity.VehicleType.Id,
-                    entity.Color,
-                    entity.ManufactureYear,
-                    entity.Mileage,
-                    entity.RegistrationNumber,
-                    entity.Weight,
-                    entity.VolumeOfTank,
-                    entity.Consumption
-                }
-            );
+            await Connection.ExecuteAsync(sql, entity);
         }
     }
 }
