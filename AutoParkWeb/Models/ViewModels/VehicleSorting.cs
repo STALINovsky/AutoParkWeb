@@ -1,4 +1,4 @@
-﻿namespace AutoParkWeb.Models
+﻿namespace AutoParkWeb.Models.ViewModels
 {
     public enum VehicleSortingOptions
     {
