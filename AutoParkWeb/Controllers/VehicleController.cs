@@ -46,7 +46,11 @@ namespace AutoParkWeb.Controllers
             return View(data);
         }
 
-        private async Task<List<SelectListItem>> GetSelectListVehicleTypes()
+        /// <summary>
+        /// Returns Select list of Vehicle Types
+        /// </summary>
+        /// <returns></returns>
+        private async Task<List<SelectListItem>> GetSelectListOfVehicleTypes()
         {
             var vehicleTypes = await typeRepository.GetVehicleTypes();
             return vehicleTypes.Select(type => new SelectListItem(type.TypeName, type.Id.ToString())).ToList();
@@ -55,7 +59,7 @@ namespace AutoParkWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            ViewBag.TypeList = await GetSelectListVehicleTypes();
+            ViewBag.TypeList = await GetSelectListOfVehicleTypes();
             return View();
         }
 
@@ -69,7 +73,7 @@ namespace AutoParkWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            ViewBag.TypeList = await GetSelectListVehicleTypes();
+            ViewBag.TypeList = await GetSelectListOfVehicleTypes();
 
             var vehicleType = await vehicleRepository.Get(id);
             return View(vehicleType);

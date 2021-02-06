@@ -23,7 +23,11 @@ namespace AutoParkWeb.Controllers
             this.vehicleRepository = vehicleRepository;
         }
 
-        private async Task<List<SelectListItem>> GetSelectVehicles()
+        /// <summary>
+        /// Returns select list of Vehicles
+        /// </summary>
+        /// <returns></returns>
+        private async Task<List<SelectListItem>> GetSelectListOfVehicles()
         {
             var vehicles = await vehicleRepository.GetVehicles();
             return vehicles.Select(vehicle =>
@@ -45,7 +49,7 @@ namespace AutoParkWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            ViewBag.VehicleList = await GetSelectVehicles();
+            ViewBag.VehicleList = await GetSelectListOfVehicles();
             return View(new Order());
         }
 
@@ -59,7 +63,7 @@ namespace AutoParkWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            ViewBag.VehicleList = await GetSelectVehicles();
+            ViewBag.VehicleList = await GetSelectListOfVehicles();
 
             var order = await orderRepository.Get(id);
             return View(order);

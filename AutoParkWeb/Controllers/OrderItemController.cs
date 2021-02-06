@@ -21,7 +21,11 @@ namespace AutoParkWeb.Controllers
             this.sparePartRepository = sparePartRepository;
         }
 
-        private async Task<List<SelectListItem>> GetSelectSparePartsList()
+        /// <summary>
+        /// Returns select list of SpareParts
+        /// </summary>
+        /// <returns></returns>
+        private async Task<List<SelectListItem>> GetSelectListOfSpareParts()
         {
             var spareParts = await sparePartRepository.GetSpareParts();
             return spareParts.Select(part => new SelectListItem(part.Name, part.Id.ToString())).ToList();
@@ -30,7 +34,7 @@ namespace AutoParkWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Add(int orderId)
         {
-            ViewBag.SparePartList = await GetSelectSparePartsList();
+            ViewBag.SparePartList = await GetSelectListOfSpareParts();
             return View(new OrderItem() { OrderId = orderId });
         }
 
@@ -51,7 +55,7 @@ namespace AutoParkWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int orderId, int itemId)
         {
-            ViewBag.SparePartList = await GetSelectSparePartsList();
+            ViewBag.SparePartList = await GetSelectListOfSpareParts();
 
             var item = await itemRepository.Get(itemId);
             return View(item);
