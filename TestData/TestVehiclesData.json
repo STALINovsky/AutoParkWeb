@@ -1,0 +1,93 @@
+[
+  {
+    "VehicleTypeId": 1,
+    "ModelName": "Volkswagen Crafter",
+    "RegistrationNumber": "5427 AX-7",
+    "Weight": 2022,
+    "ManufactureYear": 2015,
+    "Mileage": 376000,
+    "Color": "Blue",
+    "VolumeOfTank": 100,
+    "Consumption": 13,
+    "DrivingRange": 769.2307692307693,
+    "Id": 1
+  },
+  {
+    "VehicleTypeId": 1,
+    "ModelName": "Volkswagen Crafter",
+    "RegistrationNumber": "6427 AA-7",
+    "Weight": 2500,
+    "ManufactureYear": 2014,
+    "Mileage": 2014,
+    "Color": "White",
+    "VolumeOfTank": 100,
+    "Consumption": 12,
+    "DrivingRange": 833.3333333333334,
+    "Id": 2
+  },
+  {
+    "VehicleTypeId": 1,
+    "ModelName": "E-Bus E321",
+    "RegistrationNumber": "6785 BA-7",
+    "Weight": 12080,
+    "ManufactureYear": 2019,
+    "Mileage": 12080,
+    "Color": "Green",
+    "VolumeOfTank": 300,
+    "Consumption": 23,
+    "DrivingRange": 1304.3478260869565,
+    "Id": 3
+  },
+  {
+    "VehicleTypeId": 2,
+    "ModelName": "Golf 5",
+    "RegistrationNumber": "8682 AX-7",
+    "Weight": 1200,
+    "ManufactureYear": 2006,
+    "Mileage": 230451,
+    "Color": "Gray",
+    "VolumeOfTank": 60,
+    "Consumption": 9,
+    "DrivingRange": 666.6666666666666,
+    "Id": 4
+  },
+  {
+    "VehicleTypeId": 2,
+    "ModelName": "Tesla Model S",
+    "RegistrationNumber": "E001",
+    "Weight": 2200,
+    "ManufactureYear": 2019,
+    "Mileage": 10454,
+    "Color": "White",
+    "VolumeOfTank": 70,
+    "Consumption": 6,
+    "DrivingRange": 1166.6666666666667,
+    "Id": 5
+  },
+  {
+    "VehicleTypeId": 3,
+    "ModelName": "Hamm HD 12",
+    "RegistrationNumber": "5427 AA-7",
+    "Weight": 3000,
+    "ManufactureYear": 2016,
+    "Mileage": 20000,
+    "Color": "Yellow",
+    "VolumeOfTank": 122,
+    "Consumption": 20,
+    "DrivingRange": 610,
+    "Id": 6
+  },
+  {
+    "VehicleTypeId": 4,
+    "ModelName": "\u041C\u0442\u0437 \u0411\u0435\u043B\u0430\u0440\u0443\u0441 -1025.4",
+    "RegistrationNumber": "1145 AB-7",
+    "Weight": 1200,
+    "ManufactureYear": 2020,
+    "Mileage": 40000,
+    "Color": "Red",
+    "VolumeOfTank": 109,
+    "Consumption": 13,
+    "DrivingRange": 838.4615384615385,
+    "Id": 7
+  }
+]

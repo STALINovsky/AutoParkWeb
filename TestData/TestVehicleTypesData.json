@@ -1,0 +1,22 @@
+[
+  {
+    "TypeName": "Bus",
+    "TaxCoefficient": 1.2000,
+    "Id": 1
+  },
+  {
+    "TypeName": "Car",
+    "TaxCoefficient": 1.0000,
+    "Id": 2
+  },
+  {
+    "TypeName": "Rink",
+    "TaxCoefficient": 1.5000,
+    "Id": 3
+  },
+  {
+    "TypeName": "Tractor ",
+    "TaxCoefficient": 1.2000,
+    "Id": 4
+  }
+]
