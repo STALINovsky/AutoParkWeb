@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoParkData.Repositories;
 using AutoParkData.Repositories.Interfaces;
+using AutoParkWeb.Services;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace AutoParkWeb
@@ -42,6 +43,8 @@ namespace AutoParkWeb
 
             services.AddScoped<IOrderItemRepository, OrderItemRepository>(provider =>
                 new OrderItemRepository(dbConnectionString));
+
+            services.AddScoped<IJsonDeserializationService, JsonDeserializationService>();
 
             services.AddControllersWithViews();
         }

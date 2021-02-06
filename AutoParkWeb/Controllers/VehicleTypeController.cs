@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoParkData.Model.Vehicles;
 using AutoParkData.Repositories.Interfaces;
+using AutoParkWeb.Models.ViewModels;
+using AutoParkWeb.Services;
 using Microsoft.VisualBasic.CompilerServices;
 
 namespace AutoParkWeb.Controllers
@@ -12,10 +15,11 @@ namespace AutoParkWeb.Controllers
     public class VehicleTypeController : Controller
     {
         private readonly IVehicleTypeRepository vehicleTypeRepository;
-
-        public VehicleTypeController(IVehicleTypeRepository vehicleTypeRepository)
+        private readonly IJsonDeserializationService deserializationService;
+        public VehicleTypeController(IVehicleTypeRepository vehicleTypeRepository, IJsonDeserializationService deserializationService)
         {
             this.vehicleTypeRepository = vehicleTypeRepository;
+            this.deserializationService = deserializationService;
         }
 
         public async Task<IActionResult> List()
@@ -55,6 +59,20 @@ namespace AutoParkWeb.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await vehicleTypeRepository.Delete(id);
+            return RedirectToAction(nameof(List));
+        }
+
+        [HttpGet]
+        public IActionResult FromJson()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FromJson(JsonFileViewModel viewModel)
+        {
+            var vehicleTypes = await deserializationService.ReadVehicleTypes(viewModel.File);
+            await vehicleTypeRepository.AddRange(vehicleTypes);
             return RedirectToAction(nameof(List));
         }
     }

@@ -7,7 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using AutoParkWeb.Models;
+using AutoParkWeb.Models.ViewModels;
+using AutoParkWeb.Services;
 
 namespace AutoParkWeb.Controllers
 {
@@ -15,10 +18,12 @@ namespace AutoParkWeb.Controllers
     {
         private readonly IVehicleRepository vehicleRepository;
         private readonly IVehicleTypeRepository typeRepository;
-        public VehicleController(IVehicleRepository vehicleRepository, IVehicleTypeRepository typeRepository)
+        private readonly IJsonDeserializationService deserializationService;
+        public VehicleController(IVehicleRepository vehicleRepository, IVehicleTypeRepository typeRepository, IJsonDeserializationService deserializationService)
         {
             this.vehicleRepository = vehicleRepository;
             this.typeRepository = typeRepository;
+            this.deserializationService = deserializationService;
         }
 
         public async Task<IActionResult> Index(int id)
@@ -41,7 +46,7 @@ namespace AutoParkWeb.Controllers
             return View(data);
         }
 
-        private async Task<List<SelectListItem>> GetSelectVehicleTypes()
+        private async Task<List<SelectListItem>> GetSelectListVehicleTypes()
         {
             var vehicleTypes = await typeRepository.GetVehicleTypes();
             return vehicleTypes.Select(type => new SelectListItem(type.TypeName, type.Id.ToString())).ToList();
@@ -50,7 +55,7 @@ namespace AutoParkWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            ViewBag.TypeList = await GetSelectVehicleTypes();
+            ViewBag.TypeList = await GetSelectListVehicleTypes();
             return View();
         }
 
@@ -64,7 +69,7 @@ namespace AutoParkWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            ViewBag.TypeList = await GetSelectVehicleTypes();
+            ViewBag.TypeList = await GetSelectListVehicleTypes();
 
             var vehicleType = await vehicleRepository.Get(id);
             return View(vehicleType);
@@ -81,6 +86,21 @@ namespace AutoParkWeb.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await vehicleRepository.Delete(id);
+            return RedirectToAction(nameof(List));
+        }
+
+        [HttpGet]
+        public IActionResult FromJson()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FromJson(JsonFileViewModel fileViewModel)
+        {
+            var vehicles = await deserializationService.ReadVehicles(fileViewModel.File);
+            await vehicleRepository.AddRange(vehicles);
+
             return RedirectToAction(nameof(List));
         }
     }
