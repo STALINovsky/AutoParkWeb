@@ -26,10 +26,14 @@ namespace AutoParkData.Repositories
             return await Connection.QueryFirstAsync<VehicleType>("SELECT * FROM VehicleTypes WHERE Id = @id", new { id });
         }
 
-        public async Task Add(VehicleType entity)
+        public async Task AddRange(IEnumerable<VehicleType> types)
         {
-            await Connection.ExecuteAsync("INSERT INTO VehicleTypes(TypeName, TaxCoefficient) VALUES(@TypeName, @TaxCoefficient)",
-                new { entity.TypeName, entity.TaxCoefficient });
+            await Connection.ExecuteAsync("INSERT INTO VehicleTypes(TypeName, TaxCoefficient) VALUES(@TypeName, @TaxCoefficient)", types);
+        }
+
+        public Task Add(VehicleType entity)
+        {
+            return AddRange(new[] {entity});
         }
 
         public async Task Update(VehicleType entity)

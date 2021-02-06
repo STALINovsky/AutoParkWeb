@@ -11,5 +11,6 @@ namespace AutoParkData.Repositories.Interfaces
     public interface IVehicleRepository : IRepository<Vehicle>
     {
         public Task<IEnumerable<Vehicle>> GetVehicles();
+        public Task AddRange(IEnumerable<Vehicle> vehicles);
     }
 }

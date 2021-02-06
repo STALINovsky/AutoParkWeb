@@ -36,6 +36,14 @@ namespace AutoParkData.Repositories
                 }));
         }
 
+        public async Task AddRange(IEnumerable<Vehicle> vehicles)
+        {
+            const string sql = "INSERT INTO Vehicles " +
+                               "(ModelName, VehicleTypeId, Color, ManufactureYear, Mileage, RegistrationNumber, Weight, VolumeOfTank, Consumption) " +
+                               "VALUES (@ModelName, @VehicleTypeId, @Color, @ManufactureYear, @Mileage, @RegistrationNumber, @Weight, @VolumeOfTank, @Consumption) ";
+            await Connection.ExecuteAsync(sql, vehicles);
+        }
+
         public async Task<Vehicle> Get(int id)
         {
             const string sql = "SELECT * " +
@@ -75,12 +83,9 @@ namespace AutoParkData.Repositories
             await Connection.ExecuteAsync("DELETE FROM Vehicles WHERE Id = @id", new { id });
         }
 
-        public async Task Add(Vehicle entity)
+        public Task Add(Vehicle entity)
         {
-            const string sql = "INSERT INTO Vehicles " +
-                               "(ModelName, VehicleTypeId, Color, ManufactureYear, Mileage, RegistrationNumber, Weight, VolumeOfTank, Consumption) " +
-                               "VALUES (@ModelName, @VehicleTypeId, @Color, @ManufactureYear, @Mileage, @RegistrationNumber, @Weight, @VolumeOfTank, @Consumption) ";
-            await Connection.ExecuteAsync(sql, entity);
+            return AddRange(new[] { entity });
         }
     }
 }

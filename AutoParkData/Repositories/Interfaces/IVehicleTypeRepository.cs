@@ -11,5 +11,6 @@ namespace AutoParkData.Repositories.Interfaces
     public interface IVehicleTypeRepository: IRepository<VehicleType>
     {
         Task<IEnumerable<VehicleType>> GetVehicleTypes();
+        Task AddRange(IEnumerable<VehicleType> types);
     }
 }
