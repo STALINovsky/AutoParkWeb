@@ -7,6 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoParkWeb", "AutoParkWeb\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoParkData", "AutoParkData\AutoParkData.csproj", "{FD3F908A-878C-4CC9-9D72-B197B15B523F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestData", "TestData", "{49F00A44-9B6C-4C6E-BE64-A927F7BDAB40}"
+	ProjectSection(SolutionItems) = preProject
+		TestData\TestVehiclesData.json = TestData\TestVehiclesData.json
+		TestData\TestVehicleTypesData.json = TestData\TestVehicleTypesData.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

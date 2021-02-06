@@ -1,0 +1,27 @@
+﻿@model JsonFileViewModel
+
+@{
+    ViewData["Title"] = "Add vehicles - Json";
+}
+
+
+
+<div class="card">
+    <div class="card-header"><h3>Add vehicles</h3></div>
+    <div class="card-body">
+        <form asp-controller="Vehicle" asp-action="FromJson" method="post" enctype="multipart/form-data">
+
+            <div><span asp-validation-for="File" class="text-danger"></span></div>
+            <div class="form-group row">
+                <label asp-for="File" class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-9">
+                    <input asp-for="File" class="form-control">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-primary mx-auto">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
