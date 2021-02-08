@@ -17,7 +17,7 @@ namespace AutoParkData.Repositories
     /// </summary>
     public sealed class VehicleTypeRepository : Repository, IVehicleTypeRepository
     {
-        public VehicleTypeRepository(string connectionString) : base(connectionString)
+        public VehicleTypeRepository(IDbConnectionFactory connectionFactory) : base(connectionFactory)
         {
         }
 

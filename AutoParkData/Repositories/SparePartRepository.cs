@@ -17,7 +17,7 @@ namespace AutoParkData.Repositories
     /// </summary>
     public class SparePartRepository : Repository, ISparePartRepository
     {
-        public SparePartRepository(string connectionString) : base(connectionString)
+        public SparePartRepository(IDbConnectionFactory connectionFactory) : base(connectionFactory)
         {
         }
 

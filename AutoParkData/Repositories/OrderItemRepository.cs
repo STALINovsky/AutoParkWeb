@@ -14,7 +14,7 @@ namespace AutoParkData.Repositories
     /// </summary>
     public class OrderItemRepository : Repository, IOrderItemRepository
     {
-        public OrderItemRepository(string connectionString) : base(connectionString)
+        public OrderItemRepository(IDbConnectionFactory connectionFactory) : base(connectionFactory)
         {
         }
 

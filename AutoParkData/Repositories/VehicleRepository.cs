@@ -18,7 +18,7 @@ namespace AutoParkData.Repositories
     /// </summary>
     public class VehicleRepository : Repository, IVehicleRepository
     {
-        public VehicleRepository(string connectionString) : base(connectionString)
+        public VehicleRepository(IDbConnectionFactory connectionFactory) : base(connectionFactory)
         {
         }
 
