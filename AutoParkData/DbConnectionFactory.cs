@@ -8,7 +8,7 @@ using Microsoft.Data.SqlClient;
 
 namespace AutoParkData
 {
-    class DbConnectionFactory : IDbConnectionFactory
+    public class DbConnectionFactory : IDbConnectionFactory
     {
         private readonly string connectionString;
 
