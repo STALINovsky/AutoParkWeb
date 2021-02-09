@@ -19,7 +19,7 @@ namespace AutoParkData.Repositories
     /// </summary>
     public class OrderRepository : Repository, IOrderRepository
     {
-        public OrderRepository(string connectionString) : base(connectionString)
+        public OrderRepository(IDbConnectionFactory connectionFactory) : base(connectionFactory)
         {
         }
 
