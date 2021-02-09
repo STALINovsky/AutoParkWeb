@@ -15,12 +15,12 @@ namespace AutoParkData.Repositories.Base
     public abstract class Repository : IDisposable, IAsyncDisposable
     {
         /// <summary>
-        /// Ctor that init Sql connection
+        /// Init connection by connection factory
         /// </summary>
-        /// <param name="connectionString">Connection string to DB</param>
-        protected Repository(string connectionString)
+        /// <param name="connectionFactory"></param>
+        protected Repository(IDbConnectionFactory connectionFactory)
         {
-            Connection = new SqlConnection(connectionString);
+            Connection = connectionFactory.GetDbConnection();
         }
         protected readonly DbConnection Connection;
 
