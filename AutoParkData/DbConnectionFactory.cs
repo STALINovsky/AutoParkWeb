@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace AutoParkData
             this.connectionString = connectionString;
         }
 
-        public DbConnection GetDbConnection()
+        public IDbConnection GetDbConnection()
         {
             return new SqlConnection(connectionString);
         }

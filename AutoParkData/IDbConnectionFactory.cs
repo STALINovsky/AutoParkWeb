@@ -1,9 +1,10 @@
-﻿using System.Data.Common;
+﻿using System.Data;
+using System.Data.Common;
 
 namespace AutoParkData
 {
     public interface IDbConnectionFactory
     {
-        public DbConnection GetDbConnection();
+        public IDbConnection GetDbConnection();
     }
 }
