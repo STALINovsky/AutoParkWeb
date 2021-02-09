@@ -26,23 +26,15 @@ namespace AutoParkWeb
         {
             var dbConnectionString = Configuration.GetConnectionString("AutoParkDB");
             var dbCreationScript = Configuration["DataBaseCreationScriptPath"];
-
             DbCreator.EnsureDbCreated(dbConnectionString, dbCreationScript);
 
-            services.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>(
-                provider => new VehicleTypeRepository(dbConnectionString));
+            services.AddScoped<IDbConnectionFactory, DbConnectionFactory>(provider => new DbConnectionFactory(dbConnectionString));
 
-            services.AddScoped<IVehicleRepository, VehicleRepository>(
-                provider => new VehicleRepository(dbConnectionString));
-
-            services.AddScoped<ISparePartRepository, SparePartRepository>(provider =>
-                new SparePartRepository(dbConnectionString));
-
-            services.AddScoped<IOrderRepository, OrderRepository>(provider =>
-                new OrderRepository(dbConnectionString));
-
-            services.AddScoped<IOrderItemRepository, OrderItemRepository>(provider =>
-                new OrderItemRepository(dbConnectionString));
+            services.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>();
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<ISparePartRepository, SparePartRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 
             services.AddScoped<IJsonDeserializationService, JsonDeserializationService>();
 
